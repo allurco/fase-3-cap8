@@ -2,7 +2,7 @@ package br.com.allur.composador_carbono.models;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -10,14 +10,14 @@ import java.util.Objects;
 public class Emissoes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_EMISSOES")
+    @SequenceGenerator(name = "SEQ_ID_EMISSOES", sequenceName = "SEQ_ID_EMISSOES", allocationSize = 1)
     @Column(name = "ID_EMISSOES")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_FONTES_FK")
-    private Fontes fontes;                  // Aqui fiz uma composição pra puxar os dados da FK
-
+    private Fontes fontes;
 
 
     @Column(name = "QUANTIDADE_KG_CO2E")
@@ -26,7 +26,7 @@ public class Emissoes {
     private String categoria;
 
     @Column(name = "DATA_HORA")
-    private LocalDateTime dataHora;
+    private LocalDate dataHora;
 
     private String metadados;
 
@@ -63,11 +63,11 @@ public class Emissoes {
         this.categoria = categoria;
     }
 
-    public LocalDateTime getDataHora() {
+    public LocalDate getDataHora() {
         return dataHora;
     }
 
-    public void setDataHora(LocalDateTime dataHora) {
+    public void setDataHora(LocalDate dataHora) {
         this.dataHora = dataHora;
     }
 

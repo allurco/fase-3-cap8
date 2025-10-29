@@ -10,7 +10,8 @@ import java.util.Objects;
 public class Projetos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_PROJETOS")
+    @SequenceGenerator(name = "SEQ_ID_PROJETOS", sequenceName = "SEQ_ID_PROJETOS", allocationSize = 1)
     @Column(name = "ID_PROJETOS")
     private Long id;
 

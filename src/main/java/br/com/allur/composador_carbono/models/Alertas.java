@@ -2,7 +2,7 @@ package br.com.allur.composador_carbono.models;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +10,8 @@ import java.util.Objects;
 public class Alertas {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_ALERTAS")
+    @SequenceGenerator(name = "SEQ_ID_ALERTAS", sequenceName = "SEQ_ID_ALERTAS", allocationSize = 1)
     @Column(name = "ID_ALERTAS")
     private Long id;
 
@@ -25,7 +26,7 @@ public class Alertas {
     private char resolvido;
 
     @Column(name = "CRIADO_EM")
-    private LocalDateTime criadoEm;
+    private LocalDate criadoEm;
 
 
     public Long getId() {
@@ -68,11 +69,11 @@ public class Alertas {
         this.resolvido = resolvido;
     }
 
-    public LocalDateTime getCriadoEm() {
+    public LocalDate getCriadoEm() {
         return criadoEm;
     }
 
-    public void setCriadoEm(LocalDateTime criado_em) {
+    public void setCriadoEm(LocalDate criado_em) {
         this.criadoEm = criado_em;
     }
 
