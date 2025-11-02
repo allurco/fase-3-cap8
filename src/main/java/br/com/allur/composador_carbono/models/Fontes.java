@@ -1,6 +1,7 @@
 package br.com.allur.composador_carbono.models;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -24,6 +25,7 @@ public class Fontes {
     @Column(name = "ID_RESPONSAVEL")
     private Long idResponsavel;
 
+    @CreationTimestamp
     @Column(name = "CRIADO_EM")
     private LocalDate dataCriacao;
 
