@@ -3,7 +3,7 @@ version: '3.8'
 services:
   oracle-db:
     image: container-registry.oracle.com/database/express:latest
-    container_name: oracle-xe
+    container_name: oracle-xe-cc
     ports:
       - "1521:1521"
       - "5500:5500"
@@ -13,7 +13,7 @@ services:
       ORACLE_CHARACTERSET: AL32UTF8
     volumes:
       # Persist Oracle data
-      - oracle_data:/opt/oracle/oradata
+      - oracle_data_cc:/opt/oracle/oradata
       # Optional: Mount initialization scripts
       - ./init-scripts:/opt/oracle/scripts/startup
     restart: unless-stopped
@@ -30,7 +30,7 @@ services:
   # Already included in the XE image, accessible via port 5500
 
 volumes:
-  oracle_data:
+  oracle_data_cc:
     driver: local
 
 networks:
