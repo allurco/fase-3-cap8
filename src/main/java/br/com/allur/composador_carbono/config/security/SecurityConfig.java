@@ -19,9 +19,9 @@ public class SecurityConfig {
         return httpSecurity.csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "api/fontes/lista")
+                        .requestMatchers(HttpMethod.GET, "/api/fontes/lista")
                         .permitAll()
-                        .requestMatchers(HttpMethod.POST, "api/fontes")
+                        .requestMatchers(HttpMethod.POST, "/api/fontes")
                         .hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())

@@ -1,8 +1,8 @@
 package br.com.allur.composador_carbono.models;
 
 public enum UsuarioRole {
-    ADMIN("admin"),
-    USER("usuario");
+    ADMIN("ADMIN"),
+    USER("USUARIO");
 
     private String role;
 
@@ -16,5 +16,4 @@ public enum UsuarioRole {
         return role;
     }
 }
-
 
