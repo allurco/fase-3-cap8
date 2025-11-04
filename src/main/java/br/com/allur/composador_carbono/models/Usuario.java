@@ -14,7 +14,7 @@ import java.util.Objects;
 public class Usuario implements UserDetails {
 
     @Id
-git add     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_USUARIO")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_USUARIO")
     @SequenceGenerator(sequenceName = "SEQ_ID_USUARIO", name = "SEQ_ID_USUARIO", allocationSize = 1)
     private Long id;
     private String nome;
