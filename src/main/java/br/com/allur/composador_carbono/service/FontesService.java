@@ -7,6 +7,8 @@ import br.com.allur.composador_carbono.models.Fontes;
 import br.com.allur.composador_carbono.repository.FontesRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,8 +27,9 @@ public class FontesService {
         return new FontesExibicaoDto(fontesRepository.save(fontes));
     }
 
-    public List<Fontes> listarFontes() {
-        return fontesRepository.findAll();
+
+    public Page<FontesExibicaoDto> listarFontes(Pageable paginacao) {
+        return fontesRepository.findAll(paginacao).map(FontesExibicaoDto::new);
     }
 
     public void excluirFontes(Long id) {
