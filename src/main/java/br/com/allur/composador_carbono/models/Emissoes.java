@@ -1,5 +1,7 @@
 package br.com.allur.composador_carbono.models;
 
+import br.com.allur.composador_carbono.dto.EmissoesAtualizacaoDto;
+import br.com.allur.composador_carbono.dto.EmissoesCadastroDto;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +21,9 @@ public class Emissoes {
     @JoinColumn(name = "ID_FONTES_FK")
     private Fontes fontes;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_USUARIO_FK")
+    private Usuario usuario;
 
     @Column(name = "QUANTIDADE_KG_CO2E")
     private Double quantidade;
@@ -30,6 +35,31 @@ public class Emissoes {
 
     private String metadados;
 
+    public Emissoes() {
+    }
+
+    public Emissoes(EmissoesCadastroDto dados, Usuario usuario) {
+        this.usuario = usuario;
+        this.quantidade = dados.quantidadeKgCo2e().doubleValue();
+        this.categoria = dados.categoria();
+        this.dataHora = dados.dataHora().toLocalDate();
+        this.metadados = dados.metadados();
+    }
+
+    public void atualizarInformacoes(EmissoesAtualizacaoDto dados) {
+        if (dados.quantidadeKgCo2e() != null) {
+            this.quantidade = dados.quantidadeKgCo2e().doubleValue();
+        }
+        if (dados.categoria() != null) {
+            this.categoria = dados.categoria();
+        }
+        if (dados.dataHora() != null) {
+            this.dataHora = dados.dataHora().toLocalDate();
+        }
+        if (dados.metadados() != null) {
+            this.metadados = dados.metadados();
+        }
+    }
 
     public Long getId() {
         return id;
@@ -45,6 +75,14 @@ public class Emissoes {
 
     public void setFontes(Fontes fontes) {
         this.fontes = fontes;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Double getQuantidade() {
@@ -81,13 +119,14 @@ public class Emissoes {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Emissoes emissoes = (Emissoes) o;
-        return Objects.equals(id, emissoes.id) && Objects.equals(fontes, emissoes.fontes) && Objects.equals(quantidade, emissoes.quantidade) && Objects.equals(categoria, emissoes.categoria) && Objects.equals(dataHora, emissoes.dataHora) && Objects.equals(metadados, emissoes.metadados);
+        return Objects.equals(id, emissoes.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, fontes, quantidade, categoria, dataHora, metadados);
+        return Objects.hash(id);
     }
 }
