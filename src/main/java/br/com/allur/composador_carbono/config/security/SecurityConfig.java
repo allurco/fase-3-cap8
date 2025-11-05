@@ -30,8 +30,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/fontes/lista").hasAnyRole("ADMIN", "USER")
                         .requestMatchers(HttpMethod.POST, "/api/fontes/gravar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/fontes/listar").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.PUT, "/api/fontes/atualizar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/projetos/gravar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/projetos/listar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/projetos/atualizar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/projetos/deletar").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(

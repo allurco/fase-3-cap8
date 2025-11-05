@@ -31,14 +31,14 @@ public class FontesController {
     }
 
 
-    @GetMapping("/lista")
+    @GetMapping("/listar")
     @ResponseStatus(HttpStatus.OK)
     public Page<FontesExibicaoDto> listarFontes(Pageable paginacao) {
         return fontesService.listarFontes(paginacao);
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/listar/{id}")
     @ResponseStatus(HttpStatus.OK)
     public FontesExibicaoDto exibirFontesPorId(@PathVariable Long id) {
         return fontesService.exibirFontesPorId(id);
@@ -52,7 +52,7 @@ public class FontesController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deletar/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void excluirFonte(@PathVariable Long id) {
         fontesService.excluirFontes(id);
@@ -60,7 +60,7 @@ public class FontesController {
 
 
     // api/fontes/listaPeriodo?dataInicio=ano-mes-dia&dataFinal=ano-mes-dia
-    @GetMapping(value = "/listaPeriodo", params = {"dataInicio", "dataFim"})
+    @GetMapping(value = "/listarPeriodo", params = {"dataInicio", "dataFim"})
     public List<FontesExibicaoDto> listarFontesPorPeriodo(
             @Param("dataInicio") LocalDate dataInicio,
             @Param("dataFim") LocalDate dataFim
