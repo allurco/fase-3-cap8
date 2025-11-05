@@ -34,7 +34,7 @@ public class AuthController {
 
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginDto loginDto) {
+    public ResponseEntity<TokenDto> login(@RequestBody @Valid LoginDto loginDto) {
         UsernamePasswordAuthenticationToken usernamePassword =
                 new UsernamePasswordAuthenticationToken(
                         loginDto.email(),
@@ -52,10 +52,7 @@ public class AuthController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UsuarioExibicaoDto registrar(@RequestBody @Valid UsuarioCadastroDto usuarioCadastroDto) {
-        UsuarioExibicaoDto usuarioSalvo = null;
-        usuarioSalvo = usuarioService.salvarUsuario(usuarioCadastroDto);
-        return usuarioSalvo;
-
+        return usuarioService.salvarUsuario(usuarioCadastroDto);
     }
 
 }

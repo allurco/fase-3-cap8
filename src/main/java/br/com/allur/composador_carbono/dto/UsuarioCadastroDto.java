@@ -17,10 +17,8 @@ public record UsuarioCadastroDto(
         String email,
 
         @NotBlank(message = "O campo senha não pode ficar vazio")
-        @Size(min = 8, max = 32, message = "A senha deve ter entre 8 e 32 caracteres")
+        @Size(min = 8, max = 100, message = "A senha deve ter entre 8 e 32 caracteres")
         String senha,
-
-
 
         UsuarioRole role
 ) {

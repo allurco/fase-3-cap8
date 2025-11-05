@@ -35,7 +35,7 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(DataIntegrityViolationException.class)
     public Map<String, String> manusearIntegridadeDosDados(){
         Map<String, String> mapaDeErros = new HashMap<>();
-        mapaDeErros.put("erro", "Usuario já cadastrado");
+        mapaDeErros.put("erro", "Usuário já cadastrado");
         return mapaDeErros;
     }
 
@@ -44,7 +44,7 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Map<String, String> manusearRoleNaoEncontrada(){
         Map<String, String> mapaDeErros = new HashMap<>();
-        mapaDeErros.put("erro", "Função não existe");
+        mapaDeErros.put("erro", "Valor inválido para o campo role");
         return mapaDeErros;
     }
 

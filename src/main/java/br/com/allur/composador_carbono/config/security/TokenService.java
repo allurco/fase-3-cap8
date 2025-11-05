@@ -6,7 +6,6 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -30,13 +29,13 @@ public class TokenService {
                     .withExpiresAt(gerarDataDeExpiracao())
                     .sign(algorithm);
             return token;
-        } catch (JWTCreationException e){
+        } catch (JWTCreationException e) {
             throw new RuntimeException("Não foi possível gerar um token válido");
         }
     }
 
 
-    public String validarToken(String token){
+    public String validarToken(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(palavraSecreta);
             return JWT.require(algorithm)
@@ -44,14 +43,13 @@ public class TokenService {
                     .build()
                     .verify(token)
                     .getSubject();
-        } catch (JWTVerificationException e){
+        } catch (JWTVerificationException e) {
             return "";
         }
     }
 
 
-
-    public Instant gerarDataDeExpiracao(){
+    public Instant gerarDataDeExpiracao() {
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 
