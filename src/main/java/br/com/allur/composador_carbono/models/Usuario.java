@@ -16,6 +16,7 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ID_USUARIO")
     @SequenceGenerator(sequenceName = "SEQ_ID_USUARIO", name = "SEQ_ID_USUARIO", allocationSize = 1)
+    @Column(name = "ID_USUARIO")
     private Long id;
     private String nome;
     private String senha;
