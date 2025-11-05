@@ -37,6 +37,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/api/projetos/listar").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/projetos/atualizar").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/projetos/deletar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/emissoes/gravar").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/emissoes/listar").hasAnyRole("ADMIN", "USER")
+                        .requestMatchers(HttpMethod.POST, "/api/emissoes/atualizar").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/api/emissoes/deletar").hasRole("ADMIN")
                         .anyRequest()
                         .authenticated())
                 .addFilterBefore(
