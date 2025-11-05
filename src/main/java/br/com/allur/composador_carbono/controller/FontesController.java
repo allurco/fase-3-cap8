@@ -24,7 +24,7 @@ public class FontesController {
     FontesService fontesService;
 
 
-    @PostMapping
+    @PostMapping("/gravar")
     @ResponseStatus(HttpStatus.CREATED)
     public FontesExibicaoDto gravarFontes(@RequestBody @Valid FontesCadastroDto fontesCadastroDto) {
         return fontesService.gravarFontes(fontesCadastroDto);

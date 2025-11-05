@@ -1,6 +1,8 @@
 package br.com.allur.composador_carbono.advice;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -27,6 +29,23 @@ public class ApplicationExceptionHandler {
         }
 
         return mapaDeErros;
-
     }
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public Map<String, String> manusearIntegridadeDosDados(){
+        Map<String, String> mapaDeErros = new HashMap<>();
+        mapaDeErros.put("erro", "Usuario já cadastrado");
+        return mapaDeErros;
+    }
+
+
+    @ResponseStatus(HttpStatus.CONFLICT)
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public Map<String, String> manusearRoleNaoEncontrada(){
+        Map<String, String> mapaDeErros = new HashMap<>();
+        mapaDeErros.put("erro", "Função não existe");
+        return mapaDeErros;
+    }
+
 }
