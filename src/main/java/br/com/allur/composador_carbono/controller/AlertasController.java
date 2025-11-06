@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/alertas")
+@RequestMapping("/api/alertas")
 public class AlertasController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class AlertasController {
     @PostMapping
     public ResponseEntity<Alertas> gravarAlertas(@RequestBody Alertas alertas, UriComponentsBuilder uriBuilder){
         Alertas alertaSalvo = alertasService.gravarAlertas(alertas);
-        URI uri = uriBuilder.path("/alertas/{id}").buildAndExpand(alertaSalvo.getId()).toUri();
+        URI uri = uriBuilder.path("/api/alertas/{id}").buildAndExpand(alertaSalvo.getId()).toUri();
         return ResponseEntity.created(uri).body(alertaSalvo);
     }
 

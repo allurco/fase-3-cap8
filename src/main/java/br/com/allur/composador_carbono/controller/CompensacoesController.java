@@ -16,7 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/compensacoes")
+@RequestMapping("/api/compensacoes")
 public class CompensacoesController {
 
     @Autowired
@@ -25,7 +25,7 @@ public class CompensacoesController {
     @PostMapping
     public ResponseEntity<Compensacoes> gravarCompensacoes(@RequestBody Compensacoes compensacoes, UriComponentsBuilder uriBuilder){
         Compensacoes compensacaoSalva = compensacoesService.gravarCompensacoes(compensacoes);
-        URI uri = uriBuilder.path("/compensacoes/{id}").buildAndExpand(compensacaoSalva.getId()).toUri();
+        URI uri = uriBuilder.path("/api/compensacoes/{id}").buildAndExpand(compensacaoSalva.getId()).toUri();
         return ResponseEntity.created(uri).body(compensacaoSalva);
     }
 
