@@ -18,7 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.net.URI;
 
 @RestController
-@RequestMapping("/emissoes")
+@RequestMapping("/api/emissoes")
 public class EmissoesController {
 
     @Autowired
@@ -27,7 +27,7 @@ public class EmissoesController {
     @PostMapping
     public ResponseEntity<EmissoesExibicaoDto> criar(@RequestBody @Valid EmissoesCadastroDto emissoesCadastroDto, @AuthenticationPrincipal Usuario usuario, UriComponentsBuilder uriBuilder) {
         EmissoesExibicaoDto emissoesExibicaoDto = emissoesService.criar(emissoesCadastroDto, usuario);
-        URI uri = uriBuilder.path("/emissoes/{id}").buildAndExpand(emissoesExibicaoDto.id()).toUri();
+        URI uri = uriBuilder.path("/api/emissoes/{id}").buildAndExpand(emissoesExibicaoDto.id()).toUri();
         return ResponseEntity.created(uri).body(emissoesExibicaoDto);
     }
 

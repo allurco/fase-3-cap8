@@ -5,6 +5,7 @@ import br.com.allur.composador_carbono.models.Fontes;
 import java.time.LocalDate;
 
 public record FontesExibicaoDto(
+        Long id,
         String nome,
         String tipo,
         String localizacao,
@@ -13,6 +14,7 @@ public record FontesExibicaoDto(
 
     public FontesExibicaoDto(Fontes fontes) {
         this(
+                fontes.getId(),
                 fontes.getNome(),
                 fontes.getTipo(),
                 fontes.getLocalizacao(),

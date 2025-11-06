@@ -9,69 +9,69 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/fontes")
+@RequestMapping("/api/fontes")
 public class FontesController {
 
     @Autowired
     FontesService fontesService;
 
-
-    @PostMapping("/gravar")
-    @ResponseStatus(HttpStatus.CREATED)
-    public FontesExibicaoDto gravarFontes(@RequestBody @Valid FontesCadastroDto fontesCadastroDto) {
-        return fontesService.gravarFontes(fontesCadastroDto);
+    @PostMapping
+    public ResponseEntity<FontesExibicaoDto> criar(@RequestBody @Valid FontesCadastroDto fontesCadastroDto, UriComponentsBuilder uriBuilder) {
+        FontesExibicaoDto fontesCriada = fontesService.gravarFontes(fontesCadastroDto);
+        URI uri = uriBuilder.path("/api/fontes/{id}").buildAndExpand(fontesCriada.id()).toUri();
+        return ResponseEntity.created(uri).body(fontesCriada);
     }
 
-
-    @GetMapping("/listar")
-    @ResponseStatus(HttpStatus.OK)
-    public Page<FontesExibicaoDto> listarFontes(Pageable paginacao) {
-        return fontesService.listarFontes(paginacao);
+    @GetMapping
+    public ResponseEntity<Page<FontesExibicaoDto>> listar(@PageableDefault(size = 10, sort = "nome") Pageable paginacao) {
+        Page<FontesExibicaoDto> page = fontesService.listarFontes(paginacao);
+        return ResponseEntity.ok(page);
     }
 
-
-    @GetMapping("/listar/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public FontesExibicaoDto exibirFontesPorId(@PathVariable Long id) {
-        return fontesService.exibirFontesPorId(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<FontesExibicaoDto> buscarPorId(@PathVariable Long id) {
+        FontesExibicaoDto fonte = fontesService.exibirFontesPorId(id);
+        return ResponseEntity.ok(fonte);
     }
 
-
-    @PutMapping("/atualizar")
-    @ResponseStatus(HttpStatus.OK)
-    public Fontes atualizarFontes(@RequestBody Fontes fontes) {
-        return fontesService.atualizarFontes(fontes);
+    @PutMapping("/{id}")
+    public ResponseEntity<Fontes> atualizar(@PathVariable Long id, @RequestBody Fontes fontes) {
+        fontes.setId(id); // Ensure the ID from path is used
+        Fontes fonteAtualizada = fontesService.atualizarFontes(fontes);
+        return ResponseEntity.ok(fonteAtualizada);
     }
 
-
-    @DeleteMapping("/deletar/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void excluirFonte(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> excluir(@PathVariable Long id) {
         fontesService.excluirFontes(id);
+        return ResponseEntity.noContent().build();
     }
 
-
-    // api/fontes/listaPeriodo?dataInicio=ano-mes-dia&dataFinal=ano-mes-dia
-    @GetMapping(value = "/listarPeriodo", params = {"dataInicio", "dataFim"})
-    public List<FontesExibicaoDto> listarFontesPorPeriodo(
+    // Custom query endpoints
+    @GetMapping(value = "/periodo", params = {"dataInicio", "dataFim"})
+    public ResponseEntity<List<FontesExibicaoDto>> listarPorPeriodo(
             @Param("dataInicio") LocalDate dataInicio,
             @Param("dataFim") LocalDate dataFim
     ) {
-        return fontesService.listarFontesPorPeriodo(dataInicio, dataFim);
+        List<FontesExibicaoDto> fontes = fontesService.listarFontesPorPeriodo(dataInicio, dataFim);
+        return ResponseEntity.ok(fontes);
     }
 
-
-    // api/fontes/localizacao?localizacao=...
-    @GetMapping(value = "/localizacao", params = "localizacao")
-    public FontesExibicaoDto exibirFontesPorLocalizacao(@Param("localizacao") String localizacao){
-        return fontesService.buscarFontePorLocalizacao(localizacao);
+    @GetMapping(value = "/buscar", params = "localizacao")
+    public ResponseEntity<FontesExibicaoDto> buscarPorLocalizacao(@Param("localizacao") String localizacao){
+        FontesExibicaoDto fonte = fontesService.buscarFontePorLocalizacao(localizacao);
+        return ResponseEntity.ok(fonte);
     }
 }
