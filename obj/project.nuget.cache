@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "dgSpecHash": "NXxl5WPLrG0=",
+  "success": true,
+  "projectFilePath": "K:\\Projetos\\fase-3-cap8\\ComposadorCarbono.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\10.0.0\\microsoft.aspnetcore.authentication.jwtbearer.10.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.0\\microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.0\\microsoft.entityframeworkcore.10.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.0\\microsoft.entityframeworkcore.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.0\\microsoft.entityframeworkcore.analyzers.10.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\10.0.0\\microsoft.entityframeworkcore.relational.10.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.0.1\\microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.0.1\\microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.identitymodel.logging\\8.0.1\\microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.identitymodel.protocols\\8.0.1\\microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\8.0.1\\microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.0.1\\microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\oracle.entityframeworkcore\\10.23.26000\\oracle.entityframeworkcore.10.23.26000.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\oracle.manageddataaccess.core\\23.26.0\\oracle.manageddataaccess.core.23.26.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\system.configuration.configurationmanager\\8.0.0\\system.configuration.configurationmanager.8.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\system.diagnostics.performancecounter\\8.0.0\\system.diagnostics.performancecounter.8.0.0.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\system.directoryservices.protocols\\8.0.2\\system.directoryservices.protocols.8.0.2.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\system.identitymodel.tokens.jwt\\8.0.1\\system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\system.security.cryptography.pkcs\\8.0.1\\system.security.cryptography.pkcs.8.0.1.nupkg.sha512",
+    "C:\\Users\\Kauan\\.nuget\\packages\\system.security.cryptography.protecteddata\\8.0.0\\system.security.cryptography.protecteddata.8.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
